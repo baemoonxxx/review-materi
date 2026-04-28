@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Belajar Slide</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700;800;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;height:100%;overflow:hidden;}
+body{font-family:'Nunito',sans-serif;}
+#app{display:flex;flex-direction:column;width:100vw;height:100vh;overflow:hidden;position:relative;}
+.slide{display:none;flex-direction:column;width:100%;height:100%;padding:28px 32px 0;position:relative;overflow:hidden;}
+.slide.active{display:flex;}
+.bga{background:#FFD93D;}.bgb{background:#FF6B9D;}.bgc{background:#4CC9F0;}.bgd{background:#6BCB77;}.bge{background:#FF9A3C;}
+.emoji-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1;}
+.fe{position:absolute;font-size:28px;opacity:0;animation:floatUp linear infinite;}
+@keyframes floatUp{0%{opacity:0;transform:translateY(0) rotate(0deg) scale(0.8);}10%{opacity:.22;}80%{opacity:.18;}100%{opacity:0;transform:translateY(-110vh) rotate(360deg) scale(1.1);}}
+.deco{position:absolute;border-radius:50%;background:rgba(255,255,255,.15);pointer-events:none;z-index:1;}
+.topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:20px;flex-shrink:0;position:relative;z-index:3;}
+.ttag{font-size:13px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:rgba(0,0,0,.45);margin-bottom:4px;}
+.ttitle{font-family:'Fredoka One',cursive;font-size:clamp(30px,3.5vw,46px);color:#111;line-height:1.1;}
+.tblock{display:flex;flex-direction:column;align-items:center;gap:6px;flex-shrink:0;}
+.tface{font-family:'Fredoka One',cursive;font-size:clamp(36px,4vw,54px);color:#111;background:rgba(255,255,255,.6);border:3px solid rgba(0,0,0,.14);border-radius:18px;padding:6px 22px;letter-spacing:4px;min-width:150px;text-align:center;line-height:1.1;transition:color .3s;}
+.tface.warn{background:rgba(255,200,0,.5);color:#6b3a00;}
+.tface.danger{background:rgba(255,60,60,.35);color:#7a0000;animation:bl .55s infinite;}
+@keyframes bl{0%,100%{opacity:1;}50%{opacity:.45;}}
+.tbtns{display:flex;gap:6px;}
+.tbtn{background:rgba(255,255,255,.55);border:2px solid rgba(0,0,0,.14);border-radius:11px;padding:6px 16px;color:#222;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;cursor:pointer;transition:background .15s,transform .1s;}
+.tbtn:hover{background:rgba(255,255,255,.9);transform:scale(1.06);}
+.tmin{font-size:12px;font-weight:800;color:rgba(0,0,0,.38);}
+.content{flex:1;display:flex;flex-direction:column;gap:12px;position:relative;z-index:3;overflow:hidden;padding-bottom:4px;}
+.row{display:flex;gap:12px;flex:1;}
+.card{background:rgba(255,255,255,.65);border:2px solid rgba(255,255,255,.95);border-radius:18px;padding:16px 20px;font-size:clamp(14px,1.5vw,18px);color:#111;font-weight:800;line-height:1.5;flex:1;opacity:0;transform:translateY(18px);transition:opacity .4s ease,transform .4s ease;}
+.card.show{opacity:1;transform:translateY(0);}
+.card b{font-weight:900;}
+.card .sub{font-size:12px;font-weight:700;color:#333;margin-top:3px;display:block;}
+.card .ex{font-style:italic;font-size:13px;color:#222;margin-top:4px;display:block;}
+.ctag{font-size:11px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;color:#444;margin-bottom:7px;}
+.hlt{background:rgba(255,255,255,.82);border-left:5px solid rgba(0,0,0,.25);border-radius:0 16px 16px 0;padding:12px 18px;font-size:clamp(13px,1.4vw,17px);font-weight:800;color:#111;line-height:1.5;flex-shrink:0;opacity:0;transform:translateY(14px);transition:opacity .4s ease .5s,transform .4s ease .5s;}
+.hlt.show{opacity:1;transform:translateY(0);}
+.hlt .hl{font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:#555;margin-bottom:4px;}
+.ball{width:32px;height:32px;min-width:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fredoka One',cursive;font-size:16px;color:#fff;background:rgba(0,0,0,.28);flex-shrink:0;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 28px 16px;flex-shrink:0;background:rgba(0,0,0,.1);gap:10px;position:relative;z-index:3;}
+.nbtn{background:rgba(255,255,255,.6);border:2px solid rgba(255,255,255,.9);border-radius:14px;padding:10px 28px;color:#111;font-family:'Fredoka One',cursive;font-size:17px;cursor:pointer;min-width:100px;transition:background .15s,transform .1s;}
+.nbtn:hover:not(:disabled){background:rgba(255,255,255,.92);transform:scale(1.05);}
+.nbtn:disabled{opacity:.2;cursor:default;}
+.dots{display:flex;gap:10px;justify-content:center;flex:1;}
+.dot{width:12px;height:12px;border-radius:50%;background:rgba(0,0,0,.2);cursor:pointer;transition:all .25s;}
+.dot.active{background:rgba(0,0,0,.65);transform:scale(1.45);}
+</style>
+</head>
+<body>
+<div id="app">
+
+<div class="slide bga" data-sec="600" data-emoji="🍃🌱🍎🏃👶⚡🌿🦋🐾🌸">
+  <div class="emoji-bg"></div>
+  <div class="deco" style="width:320px;height:320px;top:-120px;right:-90px;"></div>
+  <div class="topbar">
+    <div><div class="ttag">🐾 Hari 1</div><div class="ttitle">Ciri-Ciri Makhluk Hidup</div></div>
+    <div class="tblock">
+      <div class="tface">10:00</div>
+      <div class="tbtns"><button class="tbtn" onclick="tog()">▶ Mulai</button><button class="tbtn" onclick="rst()">↺</button></div>
+      <div class="tmin">10 menit</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="row">
+      <div class="card"><b>🍃 Bernapas</b> — menghirup oksigen dari udara untuk bertahan hidup</div>
+      <div class="card"><b>🌱 Tumbuh</b> — tubuh berkembang dari kecil menjadi besar</div>
+      <div class="card"><b>🍎 Butuh Makanan</b> — sumber energi untuk semua kegiatan hidup</div>
+    </div>
+    <div class="row">
+      <div class="card"><b>🏃 Bergerak</b> — berpindah tempat atau menggerakkan bagian tubuh</div>
+      <div class="card"><b>👶 Berkembang Biak</b> — menghasilkan keturunan agar tidak punah</div>
+      <div class="card"><b>⚡ Peka Rangsang</b> — merespons perubahan yang terjadi di sekitar</div>
+    </div>
+    <div class="row">
+      <div class="card"><b>Makhluk hidup:</b> manusia, hewan, tumbuhan<span class="sub">Semua memiliki keenam ciri di atas</span></div>
+      <div class="card"><b>Benda mati:</b> batu, meja, air, udara<span class="sub">Tidak bernapas, tidak tumbuh, tidak berkembang biak</span></div>
+    </div>
+    <div class="hlt"><div class="hl">Kata kunci</div><b>BeTu · MaGe · BePe</b> — Bernapas · Tumbuh · Makan · Gerak · Berkembang biak · Peka rangsang</div>
+  </div>
+</div>
+
+<div class="slide bgb" data-sec="540" data-emoji="🔄✏️📝🖊️📖💬🗣️🔵🟢✨">
+  <div class="emoji-bg"></div>
+  <div class="deco" style="width:280px;height:280px;top:-90px;left:-70px;"></div>
+  <div class="topbar">
+    <div><div class="ttag">🔄 Hari 1</div><div class="ttitle">Kalimat Aktif &amp; Pasif</div></div>
+    <div class="tblock">
+      <div class="tface">09:00</div>
+      <div class="tbtns"><button class="tbtn" onclick="tog()">▶ Mulai</button><button class="tbtn" onclick="rst()">↺</button></div>
+      <div class="tmin">9 menit</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="row">
+      <div class="card" style="border-color:rgba(60,200,80,.5);">
+        <div class="ctag" style="color:#0a4a1a;">🟢 Kalimat AKTIF — subjek melakukan pekerjaan</div>
+        Awalan: <b>me-</b> atau <b>ber-</b>
+        <span class="ex">"Dani <b>menyapu</b> halaman." &nbsp;·&nbsp; "Ibu <b>memasak</b> nasi goreng." &nbsp;·&nbsp; "Adik <b>berlari</b> ke sekolah."</span>
+      </div>
+      <div class="card" style="border-color:rgba(80,130,255,.5);">
+        <div class="ctag" style="color:#0a1e6b;">🔵 Kalimat PASIF — subjek dikenai pekerjaan</div>
+        Awalan: <b>di-</b> atau <b>ter-</b>
+        <span class="ex">"Halaman <b>disapu</b> oleh Dani." &nbsp;·&nbsp; "Nasi goreng <b>dimasak</b> oleh ibu." &nbsp;·&nbsp; "Pintu itu <b>terbuka</b> sendiri."</span>
+      </div>
+    </div>
+    <div class="card" style="flex:0 0 auto;">
+      <div class="ctag">🔁 Cara mengubah aktif → pasif</div>
+      <div style="display:flex;gap:10px;margin-top:4px;">
+        <div style="flex:1;background:rgba(255,255,255,.55);border-radius:12px;padding:12px 14px;font-size:15px;">① Objek aktif → <b>subjek baru</b> di depan</div>
+        <div style="flex:1;background:rgba(255,255,255,.55);border-radius:12px;padding:12px 14px;font-size:15px;">② Kata kerja: <b>me- → di-</b></div>
+        <div style="flex:1;background:rgba(255,255,255,.55);border-radius:12px;padding:12px 14px;font-size:15px;">③ Subjek lama ke belakang + <b>"oleh"</b></div>
+      </div>
+    </div>
+    <div class="hlt"><div class="hl">Ingat</div>Aktif → <b>pelaku di depan kalimat</b> &nbsp;|&nbsp; Pasif → <b>yang kena pekerjaan di depan kalimat</b></div>
+  </div>
+</div>
+
+<div class="slide bgc" data-sec="420" data-emoji="💡📖🔍📚✏️🧐📝🌟💭🔎">
+  <div class="emoji-bg"></div>
+  <div class="deco" style="width:250px;height:250px;bottom:-60px;left:-50px;"></div>
+  <div class="topbar">
+    <div><div class="ttag">💡 Hari 1</div><div class="ttitle">Ide Pokok Paragraf</div></div>
+    <div class="tblock">
+      <div class="tface">07:00</div>
+      <div class="tbtns"><button class="tbtn" onclick="tog()">▶ Mulai</button><button class="tbtn" onclick="rst()">↺</button></div>
+      <div class="tmin">7 menit</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="card" style="flex:0 0 auto;"><b>Ide pokok</b> = gagasan utama sebuah paragraf<span class="sub">Biasanya ada di <b>kalimat pertama</b> atau <b>kalimat terakhir</b> · Kalimat lainnya = kalimat penjelas</span></div>
+    <div class="card" style="flex:0 0 auto;">
+      <div class="ctag">3 langkah menemukan ide pokok</div>
+      <div style="display:flex;gap:10px;margin-top:4px;">
+        <div style="flex:1;display:flex;align-items:flex-start;gap:10px;font-size:15px;"><div class="ball">1</div><span><b>Baca</b> seluruh paragraf dengan teliti dan pelan-pelan</span></div>
+        <div style="flex:1;display:flex;align-items:flex-start;gap:10px;font-size:15px;"><div class="ball">2</div><span>Tanya: <b>"Paragraf ini membicarakan tentang apa?"</b></span></div>
+        <div style="flex:1;display:flex;align-items:flex-start;gap:10px;font-size:15px;"><div class="ball">3</div><span>Temukan <b>1 kalimat utama</b> yang mewakili seluruh paragraf</span></div>
+      </div>
+    </div>
+    <div class="card" style="flex:1;border:2px dashed rgba(0,0,0,.16);background:rgba(255,255,255,.5);">
+      <div class="ctag">Contoh</div>
+      <span style="font-style:italic;color:#222;font-size:15px;">"Matahari sangat bermanfaat bagi makhluk hidup. Matahari membantu tanaman membuat makanan, menghangatkan bumi, dan menjadi sumber cahaya alami."</span>
+      <span style="display:block;margin-top:8px;font-size:15px;">→ Ide pokok: <b>"Matahari sangat bermanfaat bagi makhluk hidup."</b></span>
+    </div>
+    <div class="hlt"><div class="hl">Ingat</div>Ide pokok = <b>1 kalimat paling umum</b> &nbsp;·&nbsp; Kalimat penjelas = rincian atau contoh dari ide pokok</div>
+  </div>
+</div>
+
+<div class="slide bgd" data-sec="420" data-emoji="🌿🌳🌊♻️🚯🌱🐝🌻💚🍀">
+  <div class="emoji-bg"></div>
+  <div class="deco" style="width:280px;height:280px;top:-80px;right:-70px;"></div>
+  <div class="topbar">
+    <div><div class="ttag">🚫✅ Hari 1</div><div class="ttitle">Kalimat Larangan &amp; Anjuran</div></div>
+    <div class="tblock">
+      <div class="tface">07:00</div>
+      <div class="tbtns"><button class="tbtn" onclick="tog()">▶ Mulai</button><button class="tbtn" onclick="rst()">↺</button></div>
+      <div class="tmin">7 menit</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="row">
+      <div class="card" style="border-color:rgba(200,40,40,.45);">
+        <div class="ctag" style="color:#6a1010;">🚫 LARANGAN — melarang melakukan hal yang tidak baik</div>
+        Kata kunci: <b>Jangan... &nbsp;/&nbsp; Dilarang...</b>
+        <span class="ex">"<b>Jangan</b> memetik bunga di taman umum!"</span>
+        <span class="ex">"<b>Dilarang</b> merusak fasilitas sekolah!"</span>
+        <span class="ex">"<b>Jangan</b> membuang sampah di sungai!"</span>
+      </div>
+      <div class="card" style="border-color:rgba(20,140,60,.45);">
+        <div class="ctag" style="color:#0a4a20;">✅ ANJURAN — mengajak melakukan hal yang baik</div>
+        Kata kunci: <b>Sebaiknya... &nbsp;/&nbsp; Mari... &nbsp;/&nbsp; Hendaknya...</b>
+        <span class="ex">"<b>Sebaiknya</b> kita hemat listrik setiap hari."</span>
+        <span class="ex">"<b>Mari</b> jaga kebersihan kelas bersama!"</span>
+        <span class="ex">"<b>Hendaknya</b> kita rajin berolahraga."</span>
+      </div>
+    </div>
+    <div class="hlt"><div class="hl">Kata kunci</div><b>Jangan / Dilarang</b> = melarang &nbsp;&nbsp;·&nbsp;&nbsp; <b>Sebaiknya / Mari / Hendaknya</b> = menganjurkan</div>
+  </div>
+</div>
+
+<div class="slide bge" data-sec="420" data-emoji="💬🗣️🤔💭👂🙋✋😊📢💡">
+  <div class="emoji-bg"></div>
+  <div class="deco" style="width:280px;height:280px;bottom:-80px;right:-70px;"></div>
+  <div class="topbar">
+    <div><div class="ttag">💬 Hari 1</div><div class="ttitle">Menyampaikan Pendapat</div></div>
+    <div class="tblock">
+      <div class="tface">07:00</div>
+      <div class="tbtns"><button class="tbtn" onclick="tog()">▶ Mulai</button><button class="tbtn" onclick="rst()">↺</button></div>
+      <div class="tmin">7 menit</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="row">
+      <div class="card"><b>🗣️ Bahasa sopan</b> — tidak kasar, tidak menyinggung perasaan orang lain</div>
+      <div class="card"><b>📢 Ada alasan</b> — jelaskan <b>kenapa</b> kamu berpendapat seperti itu</div>
+      <div class="card"><b>🧠 Logis</b> — alasan masuk akal dan bisa dimengerti semua orang</div>
+    </div>
+    <div class="card" style="flex:0 0 auto;text-align:center;font-size:17px;">
+      <div class="ctag" style="text-align:left;">Rumus</div>
+      <b>"Menurut saya, ..."</b> &nbsp;+&nbsp; <b>"karena ..."</b> &nbsp;+&nbsp; <b>[alasan yang logis]</b>
+    </div>
+    <div class="row">
+      <div class="card" style="border:2px dashed rgba(0,0,0,.15);background:rgba(255,255,255,.48);">
+        <div class="ctag">Contoh 1</div>
+        "Menurut saya, kita harus rajin membaca <b>karena</b> membaca menambah pengetahuan dan membuat kita lebih pintar."
+      </div>
+      <div class="card" style="border:2px dashed rgba(0,0,0,.15);background:rgba(255,255,255,.48);">
+        <div class="ctag">Contoh 2</div>
+        "Menurut saya, kelas harus dijaga kebersihannya <b>karena</b> kelas bersih membuat kita nyaman dan mudah berkonsentrasi."
+      </div>
+    </div>
+    <div class="hlt"><div class="hl">Ingat</div>Pendapat tanpa alasan = <b>tidak lengkap!</b> Selalu sambung dengan kata <b>"karena"</b></div>
+  </div>
+</div>
+
+<div class="nav" id="nav">
+  <button class="nbtn" id="pb" onclick="go(cur-1)" disabled>← Balik</button>
+  <div class="dots" id="dw"></div>
+  <button class="nbtn" id="nb" onclick="go(cur+1)">Lanjut →</button>
+</div>
+</div>
+
+<script>
+let sl=[],N=0,cur=0,tSec=0,tTot=0,run=false,iv=null;
+const dw=document.getElementById('dw');
+const pad=n=>String(n).padStart(2,'0');
+function spawnEmoji(container,emojis){
+  container.innerHTML='';
+  const list=[...emojis].filter(c=>c.trim());
+  for(let i=0;i<16;i++){
+    const e=document.createElement('span');e.className='fe';
+    e.textContent=list[i%list.length];
+    const x=Math.random()*96,dur=4+Math.random()*5,delay=Math.random()*6,size=20+Math.random()*18;
+    e.style.cssText=`left:${x}%;bottom:-40px;font-size:${size}px;animation-duration:${dur}s;animation-delay:${delay}s;`;
+    container.appendChild(e);
+  }
+}
+function rebuild(){
+  sl=Array.from(document.querySelectorAll('.slide'));N=sl.length;dw.innerHTML='';
+  sl.forEach((s,i)=>{
+    const d=document.createElement('div');d.className='dot'+(i===cur?' active':'');
+    d.onclick=(()=>{const idx=i;return()=>go(idx);})();dw.appendChild(d);
+    const eb=s.querySelector('.emoji-bg');if(eb)spawnEmoji(eb,s.dataset.emoji||'✨🌟💫');
+  });
+}
+function animateIn(){
+  const cards=sl[cur].querySelectorAll('.card,.hlt');
+  cards.forEach(c=>{c.classList.remove('show');void c.offsetWidth;});
+  cards.forEach((c,i)=>setTimeout(()=>c.classList.add('show'),i*90+60));
+}
+const cf=()=>sl[cur].querySelector('.tface');
+const getCbtn=()=>sl[cur].querySelector('.tbtn');
+const cm=()=>sl[cur].querySelector('.tmin');
+function load(){
+  run=false;clearInterval(iv);tTot=parseInt(sl[cur].dataset.sec)||0;tSec=tTot;draw();
+  const b=getCbtn();if(b)b.textContent='▶ Mulai';animateIn();
+}
+function draw(){
+  const f=cf();if(!f)return;
+  f.textContent=pad(~~(tSec/60))+':'+pad(tSec%60);f.className='tface';
+  const p=tTot>0?tSec/tTot:1;
+  if(p<=.15)f.classList.add('danger');else if(p<=.4)f.classList.add('warn');
+  const m=cm();if(m)m.textContent=run?(Math.ceil(tSec/60)+' menit lagi'):(tTot/60|0)+' menit';
+}
+function tog(){run?pause():start();}
+function start(){
+  if(tSec<=0)return;run=true;const b=getCbtn();if(b)b.textContent='⏸ Pause';
+  iv=setInterval(()=>{
+    if(tSec<=0){pause();const f=cf();if(f){f.textContent='⏰ Selesai!';f.className='tface danger';}return;}
+    tSec--;draw();
+  },1000);
+}
+function pause(){run=false;clearInterval(iv);const b=getCbtn();if(b)b.textContent='▶ Lanjut';}
+function rst(){pause();load();}
+function go(n){
+  if(n<0||n>=N)return;pause();
+  sl[cur].classList.remove('active');dw.children[cur].classList.remove('active');
+  cur=n;sl[cur].classList.add('active');dw.children[cur].classList.add('active');
+  document.getElementById('pb').disabled=cur===0;document.getElementById('nb').disabled=cur===N-1;load();
+}
+(function init(){
+  const nav=document.getElementById('nav'),app=document.getElementById('app');
+  const slides=[...document.querySelectorAll('.slide')];
+  for(let i=slides.length-1;i>0;i--){const j=~~(Math.random()*(i+1));[slides[i],slides[j]]=[slides[j],slides[i]];}
+  slides.forEach(s=>{s.classList.remove('active');app.insertBefore(s,nav);});
+  cur=0;rebuild();sl[0].classList.add('active');
+  document.getElementById('pb').disabled=true;document.getElementById('nb').disabled=N<=1;load();
+})();
+</script>
+</body>
+</html>
