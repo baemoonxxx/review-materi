@@ -3,61 +3,64 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Belajar Slide</title>
+<title>Kisi-Kisi ASAT Bahasa Indonesia Kelas 3 — CQ</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700;800;900&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
-html,body{width:100%;height:100%;overflow:hidden;}
+html,body{width:100%;min-height:100%;overflow-x:hidden;overflow-y:auto;}
 body{font-family:'Nunito',sans-serif;}
-#app{display:flex;flex-direction:column;width:100vw;height:100vh;overflow:hidden;position:relative;}
-.slide{display:none;flex-direction:column;width:100%;height:100%;padding:28px 32px 0;position:relative;overflow:hidden;}
+#app{display:flex;flex-direction:column;width:100%;position:relative;}
+.slide{display:none;flex-direction:column;width:100%;min-height:100vh;padding:32px 36px 24px;position:relative;}
 .slide.active{display:flex;}
 .bga{background:#FFD93D;}.bgb{background:#FF6B9D;}.bgc{background:#4CC9F0;}.bgd{background:#6BCB77;}.bge{background:#FF9A3C;}
+.bgf{background:#C77DFF;}.bgg{background:#48CAE4;}.bgh{background:#F4A261;}.bgi{background:#90BE6D;}.bgj{background:#EF233C;}
 .emoji-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1;}
 .fe{position:absolute;font-size:28px;opacity:0;animation:floatUp linear infinite;}
 @keyframes floatUp{0%{opacity:0;transform:translateY(0) rotate(0deg) scale(0.8);}10%{opacity:.22;}80%{opacity:.18;}100%{opacity:0;transform:translateY(-110vh) rotate(360deg) scale(1.1);}}
 .deco{position:absolute;border-radius:50%;background:rgba(255,255,255,.15);pointer-events:none;z-index:1;}
 .topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:20px;flex-shrink:0;position:relative;z-index:3;}
-.ttag{font-size:13px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:rgba(0,0,0,.45);margin-bottom:4px;}
-.ttitle{font-family:'Fredoka One',cursive;font-size:clamp(30px,3.5vw,46px);color:#111;line-height:1.1;}
+.ttag{font-size:15px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:rgba(0,0,0,.45);margin-bottom:4px;}
+.ttitle{font-family:'Fredoka One',cursive;font-size:clamp(32px,4vw,52px);color:#111;line-height:1.1;}
 .tblock{display:flex;flex-direction:column;align-items:center;gap:6px;flex-shrink:0;}
-.tface{font-family:'Fredoka One',cursive;font-size:clamp(36px,4vw,54px);color:#111;background:rgba(255,255,255,.6);border:3px solid rgba(0,0,0,.14);border-radius:18px;padding:6px 22px;letter-spacing:4px;min-width:150px;text-align:center;line-height:1.1;transition:color .3s;}
+.tface{font-family:'Fredoka One',cursive;font-size:clamp(40px,4.5vw,58px);color:#111;background:rgba(255,255,255,.6);border:3px solid rgba(0,0,0,.14);border-radius:18px;padding:8px 24px;letter-spacing:4px;min-width:160px;text-align:center;line-height:1.1;transition:color .3s;}
 .tface.warn{background:rgba(255,200,0,.5);color:#6b3a00;}
 .tface.danger{background:rgba(255,60,60,.35);color:#7a0000;animation:bl .55s infinite;}
 @keyframes bl{0%,100%{opacity:1;}50%{opacity:.45;}}
 .tbtns{display:flex;gap:6px;}
-.tbtn{background:rgba(255,255,255,.55);border:2px solid rgba(0,0,0,.14);border-radius:11px;padding:6px 16px;color:#222;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;cursor:pointer;transition:background .15s,transform .1s;}
+.tbtn{background:rgba(255,255,255,.55);border:2px solid rgba(0,0,0,.14);border-radius:11px;padding:8px 18px;color:#222;font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;cursor:pointer;transition:background .15s,transform .1s;}
 .tbtn:hover{background:rgba(255,255,255,.9);transform:scale(1.06);}
-.tmin{font-size:12px;font-weight:800;color:rgba(0,0,0,.38);}
-.content{flex:1;display:flex;flex-direction:column;gap:12px;position:relative;z-index:3;overflow:hidden;padding-bottom:4px;}
-.row{display:flex;gap:12px;flex:1;}
-.card{background:rgba(255,255,255,.65);border:2px solid rgba(255,255,255,.95);border-radius:18px;padding:16px 20px;font-size:clamp(14px,1.5vw,18px);color:#111;font-weight:800;line-height:1.5;flex:1;opacity:0;transform:translateY(18px);transition:opacity .4s ease,transform .4s ease;}
+.tmin{font-size:14px;font-weight:800;color:rgba(0,0,0,.38);}
+.content{display:flex;flex-direction:column;gap:14px;position:relative;z-index:3;padding-bottom:16px;}
+.row{display:flex;gap:14px;}
+.card{background:rgba(255,255,255,.65);border:2px solid rgba(255,255,255,.95);border-radius:18px;padding:20px 24px;font-size:clamp(16px,1.6vw,20px);color:#111;font-weight:800;line-height:1.6;flex:1;opacity:0;transform:translateY(18px);transition:opacity .4s ease,transform .4s ease;}
 .card.show{opacity:1;transform:translateY(0);}
 .card b{font-weight:900;}
-.card .sub{font-size:12px;font-weight:700;color:#333;margin-top:3px;display:block;}
-.card .ex{font-style:italic;font-size:13px;color:#222;margin-top:4px;display:block;}
-.ctag{font-size:11px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;color:#444;margin-bottom:7px;}
-.hlt{background:rgba(255,255,255,.82);border-left:5px solid rgba(0,0,0,.25);border-radius:0 16px 16px 0;padding:12px 18px;font-size:clamp(13px,1.4vw,17px);font-weight:800;color:#111;line-height:1.5;flex-shrink:0;opacity:0;transform:translateY(14px);transition:opacity .4s ease .5s,transform .4s ease .5s;}
+.card .sub{font-size:14px;font-weight:700;color:#333;margin-top:4px;display:block;}
+.card .ex{font-style:italic;font-size:15px;color:#222;margin-top:6px;display:block;}
+.ctag{font-size:13px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;color:#444;margin-bottom:8px;}
+.hlt{background:rgba(255,255,255,.82);border-left:5px solid rgba(0,0,0,.25);border-radius:0 16px 16px 0;padding:16px 22px;font-size:clamp(15px,1.5vw,19px);font-weight:800;color:#111;line-height:1.6;flex-shrink:0;opacity:0;transform:translateY(14px);transition:opacity .4s ease .5s,transform .4s ease .5s;}
 .hlt.show{opacity:1;transform:translateY(0);}
-.hlt .hl{font-size:10px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:#555;margin-bottom:4px;}
-.ball{width:32px;height:32px;min-width:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fredoka One',cursive;font-size:16px;color:#fff;background:rgba(0,0,0,.28);flex-shrink:0;}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:6px 28px 8px;flex-shrink:0;background:rgba(0,0,0,.1);gap:10px;position:relative;z-index:3;}
-.nbtn{background:rgba(255,255,255,.6);border:2px solid rgba(255,255,255,.9);border-radius:14px;padding:6px 20px;color:#111;font-family:'Fredoka One',cursive;font-size:14px;cursor:pointer;min-width:100px;transition:background .15s,transform .1s;}
+.hlt .hl{font-size:12px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:#555;margin-bottom:5px;}
+.ball{width:36px;height:36px;min-width:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fredoka One',cursive;font-size:18px;color:#fff;background:rgba(0,0,0,.28);flex-shrink:0;}
+.soal-badge{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.18);border-radius:10px;padding:4px 12px;font-size:13px;font-weight:900;color:#fff;letter-spacing:.5px;z-index:4;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:10px 28px 12px;background:rgba(0,0,0,.1);gap:10px;position:sticky;bottom:0;z-index:10;}
+.nbtn{background:rgba(255,255,255,.6);border:2px solid rgba(255,255,255,.9);border-radius:14px;padding:8px 24px;color:#111;font-family:'Fredoka One',cursive;font-size:16px;cursor:pointer;min-width:110px;transition:background .15s,transform .1s;}
 .nbtn:hover:not(:disabled){background:rgba(255,255,255,.92);transform:scale(1.05);}
 .nbtn:disabled{opacity:.2;cursor:default;}
-.dots{display:flex;gap:10px;justify-content:center;flex:1;}
-.dot{width:12px;height:12px;border-radius:50%;background:rgba(0,0,0,.2);cursor:pointer;transition:all .25s;}
+.dots{display:flex;gap:8px;justify-content:center;flex:1;flex-wrap:wrap;}
+.dot{width:13px;height:13px;border-radius:50%;background:rgba(0,0,0,.2);cursor:pointer;transition:all .25s;}
 .dot.active{background:rgba(0,0,0,.65);transform:scale(1.45);}
 </style>
 </head>
 <body>
 <div id="app">
 
-<div class="slide bga" data-sec="600" data-emoji="🍃🌱🍎🏃👶⚡🌿🦋🐾🌸">
+<!-- SLIDE 1 — Soal 1: Ciri-Ciri Makhluk Hidup -->
+<div class="slide bga" data-sec="600" data-emoji="🍃🌱🍎🏃👶⚡🌿🦋🐾🌸" data-soal="Soal 1">
   <div class="emoji-bg"></div>
   <div class="deco" style="width:320px;height:320px;top:-120px;right:-90px;"></div>
   <div class="topbar">
-    <div><div class="ttag">🐾 Hari 1</div><div class="ttitle">Ciri-Ciri Makhluk Hidup</div></div>
+    <div><div class="ttag">🐾 Materi 1</div><div class="ttitle">Ciri-Ciri Makhluk Hidup</div></div>
     <div class="tblock">
       <div class="tface">10:00</div>
       <div class="tbtns"><button class="tbtn" onclick="tog()">▶ Mulai</button><button class="tbtn" onclick="rst()">↺</button></div>
@@ -79,15 +82,16 @@ body{font-family:'Nunito',sans-serif;}
       <div class="card"><b>Makhluk hidup:</b> manusia, hewan, tumbuhan<span class="sub">Semua memiliki keenam ciri di atas</span></div>
       <div class="card"><b>Benda mati:</b> batu, meja, air, udara<span class="sub">Tidak bernapas, tidak tumbuh, tidak berkembang biak</span></div>
     </div>
-    <div class="hlt"><div class="hl">Kata kunci</div><b>BeTu · MaGe · BePe</b> — Bernapas · Tumbuh · Makan · Gerak · Berkembang biak · Peka rangsang</div>
+    <div class="hlt"><div class="hl">Kata kunci hafalan</div><b>BeTu · MaGe · BePe</b> — Bernapas · Tumbuh · Makan · Gerak · Berkembang biak · Peka rangsang</div>
   </div>
 </div>
 
-<div class="slide bgb" data-sec="540" data-emoji="🔄✏️📝🖊️📖💬🗣️🔵🟢✨">
+<!-- SLIDE 2 — Soal 2: Kalimat Aktif & Pasif -->
+<div class="slide bgb" data-sec="540" data-emoji="🔄✏️📝🖊️📖💬🗣️🔵🟢✨" data-soal="Soal 2">
   <div class="emoji-bg"></div>
   <div class="deco" style="width:280px;height:280px;top:-90px;left:-70px;"></div>
   <div class="topbar">
-    <div><div class="ttag">🔄 Hari 1</div><div class="ttitle">Kalimat Aktif &amp; Pasif</div></div>
+    <div><div class="ttag">🔄 Materi 2</div><div class="ttitle">Kalimat Aktif &amp; Pasif</div></div>
     <div class="tblock">
       <div class="tface">09:00</div>
       <div class="tbtns"><button class="tbtn" onclick="tog()">▶ Mulai</button><button class="tbtn" onclick="rst()">↺</button></div>
@@ -99,12 +103,12 @@ body{font-family:'Nunito',sans-serif;}
       <div class="card" style="border-color:rgba(60,200,80,.5);">
         <div class="ctag" style="color:#0a4a1a;">🟢 Kalimat AKTIF — subjek melakukan pekerjaan</div>
         Awalan: <b>me-</b> atau <b>ber-</b>
-        <span class="ex">"Dani <b>menyapu</b> halaman." &nbsp;·&nbsp; "Ibu <b>memasak</b> nasi goreng." &nbsp;·&nbsp; "Adik <b>berlari</b> ke sekolah."</span>
+        <span class="ex">"Dani <b>menyapu</b> halaman." &nbsp;·&nbsp; "Ibu <b>memasak</b> nasi goreng."</span>
       </div>
       <div class="card" style="border-color:rgba(80,130,255,.5);">
         <div class="ctag" style="color:#0a1e6b;">🔵 Kalimat PASIF — subjek dikenai pekerjaan</div>
         Awalan: <b>di-</b> atau <b>ter-</b>
-        <span class="ex">"Halaman <b>disapu</b> oleh Dani." &nbsp;·&nbsp; "Nasi goreng <b>dimasak</b> oleh ibu." &nbsp;·&nbsp; "Pintu itu <b>terbuka</b> sendiri."</span>
+        <span class="ex">"Halaman <b>disapu</b> oleh Dani." &nbsp;·&nbsp; "Pintu itu <b>terbuka</b> sendiri."</span>
       </div>
     </div>
     <div class="card" style="flex:0 0 auto;">
@@ -115,15 +119,16 @@ body{font-family:'Nunito',sans-serif;}
         <div style="flex:1;background:rgba(255,255,255,.55);border-radius:12px;padding:12px 14px;font-size:15px;">③ Subjek lama ke belakang + <b>"oleh"</b></div>
       </div>
     </div>
-    <div class="hlt"><div class="hl">Ingat</div>Aktif → <b>pelaku di depan kalimat</b> &nbsp;|&nbsp; Pasif → <b>yang kena pekerjaan di depan kalimat</b></div>
+    <div class="hlt"><div class="hl">Ingat</div>Aktif → <b>pelaku di depan</b> &nbsp;|&nbsp; Pasif → <b>yang kena pekerjaan di depan</b></div>
   </div>
 </div>
 
-<div class="slide bgc" data-sec="420" data-emoji="💡📖🔍📚✏️🧐📝🌟💭🔎">
+<!-- SLIDE 3 — Soal 3: Ide Pokok Paragraf -->
+<div class="slide bgc" data-sec="420" data-emoji="💡📖🔍📚✏️🧐📝🌟💭🔎" data-soal="Soal 3">
   <div class="emoji-bg"></div>
   <div class="deco" style="width:250px;height:250px;bottom:-60px;left:-50px;"></div>
   <div class="topbar">
-    <div><div class="ttag">💡 Hari 1</div><div class="ttitle">Ide Pokok Paragraf</div></div>
+    <div><div class="ttag">💡 Materi 3</div><div class="ttitle">Ide Pokok Paragraf</div></div>
     <div class="tblock">
       <div class="tface">07:00</div>
       <div class="tbtns"><button class="tbtn" onclick="tog()">▶ Mulai</button><button class="tbtn" onclick="rst()">↺</button></div>
@@ -135,25 +140,26 @@ body{font-family:'Nunito',sans-serif;}
     <div class="card" style="flex:0 0 auto;">
       <div class="ctag">3 langkah menemukan ide pokok</div>
       <div style="display:flex;gap:10px;margin-top:4px;">
-        <div style="flex:1;display:flex;align-items:flex-start;gap:10px;font-size:15px;"><div class="ball">1</div><span><b>Baca</b> seluruh paragraf dengan teliti dan pelan-pelan</span></div>
-        <div style="flex:1;display:flex;align-items:flex-start;gap:10px;font-size:15px;"><div class="ball">2</div><span>Tanya: <b>"Paragraf ini membicarakan tentang apa?"</b></span></div>
-        <div style="flex:1;display:flex;align-items:flex-start;gap:10px;font-size:15px;"><div class="ball">3</div><span>Temukan <b>1 kalimat utama</b> yang mewakili seluruh paragraf</span></div>
+        <div style="flex:1;display:flex;align-items:flex-start;gap:10px;font-size:15px;"><div class="ball">1</div><span><b>Baca</b> seluruh paragraf dengan teliti</span></div>
+        <div style="flex:1;display:flex;align-items:flex-start;gap:10px;font-size:15px;"><div class="ball">2</div><span>Tanya: <b>"Paragraf ini tentang apa?"</b></span></div>
+        <div style="flex:1;display:flex;align-items:flex-start;gap:10px;font-size:15px;"><div class="ball">3</div><span>Temukan <b>1 kalimat utama</b> yang mewakili paragraf</span></div>
       </div>
     </div>
     <div class="card" style="flex:1;border:2px dashed rgba(0,0,0,.16);background:rgba(255,255,255,.5);">
-      <div class="ctag">Contoh</div>
-      <span style="font-style:italic;color:#222;font-size:15px;">"Matahari sangat bermanfaat bagi makhluk hidup. Matahari membantu tanaman membuat makanan, menghangatkan bumi, dan menjadi sumber cahaya alami."</span>
-      <span style="display:block;margin-top:8px;font-size:15px;">→ Ide pokok: <b>"Matahari sangat bermanfaat bagi makhluk hidup."</b></span>
+      <div class="ctag">Contoh — Soal 3</div>
+      <span style="font-style:italic;color:#222;font-size:15px;">"Pohon memiliki banyak manfaat bagi kehidupan manusia. Pohon menghasilkan oksigen, mencegah erosi, dan menghasilkan buah."</span>
+      <span style="display:block;margin-top:8px;font-size:15px;">→ Ide pokok: <b>"Pohon memiliki banyak manfaat bagi kehidupan manusia."</b></span>
     </div>
-    <div class="hlt"><div class="hl">Ingat</div>Ide pokok = <b>1 kalimat paling umum</b> &nbsp;·&nbsp; Kalimat penjelas = rincian atau contoh dari ide pokok</div>
+    <div class="hlt"><div class="hl">Ingat</div>Ide pokok = <b>kalimat paling umum</b> &nbsp;·&nbsp; Kalimat penjelas = rincian atau contoh dari ide pokok</div>
   </div>
 </div>
 
-<div class="slide bgd" data-sec="420" data-emoji="🌿🌳🌊♻️🚯🌱🐝🌻💚🍀">
+<!-- SLIDE 4 — Soal 4: Kalimat Larangan & Anjuran -->
+<div class="slide bgd" data-sec="420" data-emoji="🌿🌳🌊♻️🚯🌱🐝🌻💚🍀" data-soal="Soal 4">
   <div class="emoji-bg"></div>
   <div class="deco" style="width:280px;height:280px;top:-80px;right:-70px;"></div>
   <div class="topbar">
-    <div><div class="ttag">🚫✅ Hari 1</div><div class="ttitle">Kalimat Larangan &amp; Anjuran</div></div>
+    <div><div class="ttag">🚫✅ Materi 4</div><div class="ttitle">Kalimat Larangan &amp; Anjuran</div></div>
     <div class="tblock">
       <div class="tface">07:00</div>
       <div class="tbtns"><button class="tbtn" onclick="tog()">▶ Mulai</button><button class="tbtn" onclick="rst()">↺</button></div>
@@ -166,26 +172,32 @@ body{font-family:'Nunito',sans-serif;}
         <div class="ctag" style="color:#6a1010;">🚫 LARANGAN — melarang melakukan hal yang tidak baik</div>
         Kata kunci: <b>Jangan... &nbsp;/&nbsp; Dilarang...</b>
         <span class="ex">"<b>Jangan</b> memetik bunga di taman umum!"</span>
-        <span class="ex">"<b>Dilarang</b> merusak fasilitas sekolah!"</span>
-        <span class="ex">"<b>Jangan</b> membuang sampah di sungai!"</span>
+        <span class="ex">"<b>Dilarang</b> membuang sampah di sungai!"</span>
       </div>
       <div class="card" style="border-color:rgba(20,140,60,.45);">
         <div class="ctag" style="color:#0a4a20;">✅ ANJURAN — mengajak melakukan hal yang baik</div>
         Kata kunci: <b>Sebaiknya... &nbsp;/&nbsp; Mari... &nbsp;/&nbsp; Hendaknya...</b>
         <span class="ex">"<b>Sebaiknya</b> kita hemat listrik setiap hari."</span>
         <span class="ex">"<b>Mari</b> jaga kebersihan kelas bersama!"</span>
-        <span class="ex">"<b>Hendaknya</b> kita rajin berolahraga."</span>
+      </div>
+    </div>
+    <div class="card" style="flex:0 0 auto;">
+      <div class="ctag">Tips menjawab Soal 4 — tentang menjaga lingkungan</div>
+      <div style="display:flex;gap:12px;">
+        <div style="flex:1;background:rgba(200,40,40,.12);border-radius:12px;padding:10px 14px;">Larangan: <b>"Jangan buang sampah sembarangan!"</b></div>
+        <div style="flex:1;background:rgba(20,140,60,.12);border-radius:12px;padding:10px 14px;">Anjuran: <b>"Sebaiknya kita menanam pohon di sekitar rumah."</b></div>
       </div>
     </div>
     <div class="hlt"><div class="hl">Kata kunci</div><b>Jangan / Dilarang</b> = melarang &nbsp;&nbsp;·&nbsp;&nbsp; <b>Sebaiknya / Mari / Hendaknya</b> = menganjurkan</div>
   </div>
 </div>
 
-<div class="slide bge" data-sec="420" data-emoji="💬🗣️🤔💭👂🙋✋😊📢💡">
+<!-- SLIDE 5 — Soal 5: Menyampaikan Pendapat -->
+<div class="slide bge" data-sec="420" data-emoji="💬🗣️🤔💭👂🙋✋😊📢💡" data-soal="Soal 5">
   <div class="emoji-bg"></div>
   <div class="deco" style="width:280px;height:280px;bottom:-80px;right:-70px;"></div>
   <div class="topbar">
-    <div><div class="ttag">💬 Hari 1</div><div class="ttitle">Menyampaikan Pendapat</div></div>
+    <div><div class="ttag">💬 Materi 5</div><div class="ttitle">Menyampaikan Pendapat</div></div>
     <div class="tblock">
       <div class="tface">07:00</div>
       <div class="tbtns"><button class="tbtn" onclick="tog()">▶ Mulai</button><button class="tbtn" onclick="rst()">↺</button></div>
@@ -196,23 +208,203 @@ body{font-family:'Nunito',sans-serif;}
     <div class="row">
       <div class="card"><b>🗣️ Bahasa sopan</b> — tidak kasar, tidak menyinggung perasaan orang lain</div>
       <div class="card"><b>📢 Ada alasan</b> — jelaskan <b>kenapa</b> kamu berpendapat seperti itu</div>
-      <div class="card"><b>🧠 Logis</b> — alasan masuk akal dan bisa dimengerti semua orang</div>
+      <div class="card"><b>🧠 Logis</b> — alasan masuk akal dan bisa dimengerti</div>
     </div>
     <div class="card" style="flex:0 0 auto;text-align:center;font-size:17px;">
-      <div class="ctag" style="text-align:left;">Rumus</div>
+      <div class="ctag" style="text-align:left;">Rumus menjawab</div>
       <b>"Menurut saya, ..."</b> &nbsp;+&nbsp; <b>"karena ..."</b> &nbsp;+&nbsp; <b>[alasan yang logis]</b>
     </div>
-    <div class="row">
-      <div class="card" style="border:2px dashed rgba(0,0,0,.15);background:rgba(255,255,255,.48);">
-        <div class="ctag">Contoh 1</div>
-        "Menurut saya, kita harus rajin membaca <b>karena</b> membaca menambah pengetahuan dan membuat kita lebih pintar."
-      </div>
-      <div class="card" style="border:2px dashed rgba(0,0,0,.15);background:rgba(255,255,255,.48);">
-        <div class="ctag">Contoh 2</div>
-        "Menurut saya, kelas harus dijaga kebersihannya <b>karena</b> kelas bersih membuat kita nyaman dan mudah berkonsentrasi."
-      </div>
+    <div class="card" style="flex:1;border:2px dashed rgba(0,0,0,.15);background:rgba(255,255,255,.48);">
+      <div class="ctag">Contoh — Soal 5: Mengapa kita harus merawat tanaman?</div>
+      "Menurut saya, kita harus merawat tanaman di sekitar kita <b>karena</b> tanaman menghasilkan oksigen yang kita butuhkan untuk bernapas dan membuat lingkungan menjadi sejuk dan nyaman."
     </div>
     <div class="hlt"><div class="hl">Ingat</div>Pendapat tanpa alasan = <b>tidak lengkap!</b> Selalu sambung dengan kata <b>"karena"</b></div>
+  </div>
+</div>
+
+<!-- SLIDE 6 — Soal 6: Kritik, Saran & Solusi -->
+<div class="slide bgf" data-sec="420" data-emoji="🔍💬🎯📋✍️💡🤝🏆📣🌟" data-soal="Soal 6">
+  <div class="emoji-bg"></div>
+  <div class="deco" style="width:300px;height:300px;top:-100px;left:-80px;"></div>
+  <div class="topbar">
+    <div><div class="ttag">🎯 Materi 6</div><div class="ttitle">Kritik, Saran &amp; Solusi</div></div>
+    <div class="tblock">
+      <div class="tface">07:00</div>
+      <div class="tbtns"><button class="tbtn" onclick="tog()">▶ Mulai</button><button class="tbtn" onclick="rst()">↺</button></div>
+      <div class="tmin">7 menit</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="row">
+      <div class="card" style="border-color:rgba(180,0,0,.4);">
+        <b>🔍 KRITIK</b> — menyebutkan masalah yang ada dengan sopan
+        <span class="ex">"Kelas ini terlihat kotor dan tidak nyaman untuk belajar."</span>
+      </div>
+      <div class="card" style="border-color:rgba(80,80,220,.4);">
+        <b>💡 SARAN</b> — mengusulkan apa yang seharusnya dilakukan
+        <span class="ex">"Sebaiknya kita menjaga kebersihan kelas setiap hari."</span>
+      </div>
+      <div class="card" style="border-color:rgba(20,160,60,.4);">
+        <b>🤝 SOLUSI</b> — cara nyata untuk menyelesaikan masalah
+        <span class="ex">"Kita bisa membuat jadwal piket agar kelas selalu bersih."</span>
+      </div>
+    </div>
+    <div class="card" style="flex:0 0 auto;">
+      <div class="ctag">Urutan menjawab Soal 6 — Gambar kelas kotor</div>
+      <div style="display:flex;gap:10px;margin-top:4px;">
+        <div style="flex:1;display:flex;align-items:flex-start;gap:8px;font-size:14px;"><div class="ball">1</div><span>Kritik → <b>sebutkan masalahnya</b></span></div>
+        <div style="flex:1;display:flex;align-items:flex-start;gap:8px;font-size:14px;"><div class="ball">2</div><span>Saran → <b>katakan "sebaiknya..."</b></span></div>
+        <div style="flex:1;display:flex;align-items:flex-start;gap:8px;font-size:14px;"><div class="ball">3</div><span>Solusi → <b>jelaskan cara konkretnya</b></span></div>
+      </div>
+    </div>
+    <div class="hlt"><div class="hl">Hafalan cepat</div><b>K–S–S</b> = <b>K</b>ritik (masalah) → <b>S</b>aran (anjuran) → <b>S</b>olusi (cara)</div>
+  </div>
+</div>
+
+<!-- SLIDE 7 — Soal 7: Fakta vs Opini -->
+<div class="slide bgg" data-sec="420" data-emoji="📰🔬🧪✅❌🤔💭📖🔎🧠" data-soal="Soal 7">
+  <div class="emoji-bg"></div>
+  <div class="deco" style="width:260px;height:260px;bottom:-60px;right:-50px;"></div>
+  <div class="topbar">
+    <div><div class="ttag">🔬 Materi 7</div><div class="ttitle">Fakta &amp; Opini</div></div>
+    <div class="tblock">
+      <div class="tface">07:00</div>
+      <div class="tbtns"><button class="tbtn" onclick="tog()">▶ Mulai</button><button class="tbtn" onclick="rst()">↺</button></div>
+      <div class="tmin">7 menit</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="row">
+      <div class="card" style="border-color:rgba(0,120,60,.5);">
+        <div class="ctag" style="color:#003a1a;">✅ FAKTA — bisa dibuktikan kebenarannya</div>
+        <b>Ciri-ciri:</b> bisa dilihat, diukur, atau dibuktikan<br>
+        Tidak pakai kata pendapat
+        <span class="ex">"Burung Cendrawasih hidup di Papua." ✅</span>
+        <span class="ex">"Pohon mangrove tumbuh di pesisir pantai." ✅</span>
+      </div>
+      <div class="card" style="border-color:rgba(160,0,120,.5);">
+        <div class="ctag" style="color:#5a003a;">💭 OPINI — pendapat seseorang, belum tentu benar untuk semua</div>
+        <b>Ciri-ciri:</b> pakai kata <b>menurut saya, paling, sangat, sepertinya, saya rasa</b>
+        <span class="ex">"Menurut saya, Cendrawasih adalah burung paling indah." 💭</span>
+        <span class="ex">"Pohon mangrove adalah pohon paling berguna di dunia." 💭</span>
+      </div>
+    </div>
+    <div class="card" style="flex:0 0 auto;">
+      <div class="ctag">Cara menjawab Soal 7</div>
+      <div style="font-size:15px;">Sebutkan: <b>(1) ini fakta / opini</b>, lalu <b>(2) alasannya</b></div>
+      <div style="margin-top:8px;font-size:14px;background:rgba(255,255,255,.5);border-radius:10px;padding:8px 12px;">
+        Contoh: "Kalimat A adalah <b>fakta</b> karena bisa dibuktikan — Cendrawasih memang hidup di Papua. Kalimat B adalah <b>opini</b> karena menggunakan kata 'menurut saya' dan tidak bisa dibuktikan."
+      </div>
+    </div>
+    <div class="hlt"><div class="hl">Kata kunci opini</div><b>Menurut saya · Paling · Sangat · Saya rasa · Sepertinya</b> → kemungkinan besar = opini!</div>
+  </div>
+</div>
+
+<!-- SLIDE 8 — Soal 8: Kalimat Efektif + Fakta/Opini (Evaluasi) -->
+<div class="slide bgh" data-sec="480" data-emoji="✏️📝🔧⚙️📐🎯✅🧹💯🌿" data-soal="Soal 8">
+  <div class="emoji-bg"></div>
+  <div class="deco" style="width:290px;height:290px;top:-90px;right:-70px;"></div>
+  <div class="topbar">
+    <div><div class="ttag">⚙️ Materi 8</div><div class="ttitle">Kalimat Efektif &amp; Evaluasi Paragraf</div></div>
+    <div class="tblock">
+      <div class="tface">08:00</div>
+      <div class="tbtns"><button class="tbtn" onclick="tog()">▶ Mulai</button><button class="tbtn" onclick="rst()">↺</button></div>
+      <div class="tmin">8 menit</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="row">
+      <div class="card">
+        <div class="ctag">✅ Kalimat EFEKTIF — syaratnya:</div>
+        <b>① Jelas</b> — mudah dimengerti<br>
+        <b>② Tidak berulang</b> — tidak ada kata yang dobel<br>
+        <b>③ Sesuai tujuan</b> — tidak berlebihan
+        <span class="ex">Contoh efektif: "Ibu memasak nasi." ✅</span>
+        <span class="ex">Tidak efektif: "Ibu memasak nasi goreng yang sedang dimasak oleh ibu." ❌</span>
+      </div>
+      <div class="card">
+        <div class="ctag">📋 Cara mengevaluasi paragraf — Soal 8</div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px;">
+          <div style="display:flex;align-items:flex-start;gap:8px;font-size:14px;"><div class="ball">1</div><span>Nilai: apakah kalimatnya <b>efektif atau tidak?</b></span></div>
+          <div style="display:flex;align-items:flex-start;gap:8px;font-size:14px;"><div class="ball">2</div><span>Tentukan: mana <b>fakta</b> dan mana <b>opini</b></span></div>
+          <div style="display:flex;align-items:flex-start;gap:8px;font-size:14px;"><div class="ball">3</div><span>Jelaskan <b>alasannya</b></span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="flex:0 0 auto;font-size:14px;">
+      <div class="ctag">Latihan — Paragraf Soal 8 (pohon mangrove)</div>
+      <span style="font-style:italic;">"Pohon mangrove tumbuh di pesisir pantai. Akarnya kuat dan dapat menahan ombak. Menurut saya, pohon mangrove adalah pohon paling berguna di dunia."</span>
+      <div style="margin-top:8px;">✅ Fakta: kalimat 1 & 2 (bisa dibuktikan) &nbsp;|&nbsp; 💭 Opini: kalimat 3 (ada "menurut saya")</div>
+    </div>
+    <div class="hlt"><div class="hl">Rumus evaluasi</div>Kalimat efektif = <b>jelas + tidak berulang</b> &nbsp;·&nbsp; Fakta = <b>bisa dibuktikan</b> &nbsp;·&nbsp; Opini = <b>ada kata pendapat</b></div>
+  </div>
+</div>
+
+<!-- SLIDE 9 — Soal 9: Laporan Lisan Runtut -->
+<div class="slide bgi" data-sec="480" data-emoji="📋🗣️📖🏫🌟✍️📣🎤🏃📝" data-soal="Soal 9">
+  <div class="emoji-bg"></div>
+  <div class="deco" style="width:270px;height:270px;bottom:-70px;left:-60px;"></div>
+  <div class="topbar">
+    <div><div class="ttag">📋 Materi 9</div><div class="ttitle">Laporan Lisan yang Runtut</div></div>
+    <div class="tblock">
+      <div class="tface">08:00</div>
+      <div class="tbtns"><button class="tbtn" onclick="tog()">▶ Mulai</button><button class="tbtn" onclick="rst()">↺</button></div>
+      <div class="tmin">8 menit</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="card" style="flex:0 0 auto;">
+      <div class="ctag">📐 Struktur Laporan Lisan — 4 bagian wajib</div>
+      <div style="display:flex;gap:10px;margin-top:6px;">
+        <div style="flex:1;background:rgba(255,255,255,.55);border-radius:12px;padding:10px 12px;font-size:14px;"><div class="ball" style="margin-bottom:6px;">1</div><b>Judul</b><br>Nama kegiatannya apa</div>
+        <div style="flex:1;background:rgba(255,255,255,.55);border-radius:12px;padding:10px 12px;font-size:14px;"><div class="ball" style="margin-bottom:6px;">2</div><b>Waktu &amp; Tempat</b><br>Kapan dan di mana</div>
+        <div style="flex:1;background:rgba(255,255,255,.55);border-radius:12px;padding:10px 12px;font-size:14px;"><div class="ball" style="margin-bottom:6px;">3</div><b>Jalannya Kegiatan</b><br>Apa saja yang dilakukan</div>
+        <div style="flex:1;background:rgba(255,255,255,.55);border-radius:12px;padding:10px 12px;font-size:14px;"><div class="ball" style="margin-bottom:6px;">4</div><b>Kesimpulan</b><br>Manfaat atau hasilnya</div>
+      </div>
+    </div>
+    <div class="card" style="flex:1;border:2px dashed rgba(0,0,0,.15);background:rgba(255,255,255,.5);">
+      <div class="ctag">Contoh jawaban Soal 9 — kegiatan membersihkan kelas</div>
+      <div style="font-size:14px;line-height:1.8;">
+        <b>① Judul:</b> "Laporan Kegiatan Membersihkan Kelas"<br>
+        <b>② Waktu &amp; Tempat:</b> "Kegiatan ini dilakukan pada hari Jumat pagi di ruang kelas 3."<br>
+        <b>③ Jalannya:</b> "Kami menyapu lantai, mengelap meja, dan membuang sampah ke tempat sampah."<br>
+        <b>④ Kesimpulan:</b> "Kelas menjadi bersih dan nyaman untuk belajar."
+      </div>
+    </div>
+    <div class="hlt"><div class="hl">Kata kunci hafalan</div><b>J–W–J–K</b> = <b>J</b>udul · <b>W</b>aktu &amp; Tempat · <b>J</b>alannya kegiatan · <b>K</b>esimpulan</div>
+  </div>
+</div>
+
+<!-- SLIDE 10 — Soal 10: HOTS Menanggapi Masalah Lingkungan -->
+<div class="slide bgj" data-sec="540" data-emoji="🌊🚮🐟💡🗣️🌍⚠️❓🤔💪" data-soal="Soal 10">
+  <div class="emoji-bg"></div>
+  <div class="deco" style="width:300px;height:300px;top:-100px;right:-80px;"></div>
+  <div class="topbar">
+    <div><div class="ttag">🌍 Materi 10 · HOTS</div><div class="ttitle">Menanggapi Masalah Lingkungan</div></div>
+    <div class="tblock">
+      <div class="tface">09:00</div>
+      <div class="tbtns"><button class="tbtn" onclick="tog()">▶ Mulai</button><button class="tbtn" onclick="rst()">↺</button></div>
+      <div class="tmin">9 menit</div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="card" style="flex:0 0 auto;">
+      <div class="ctag">📌 Soal 10 — gambar sungai tercemar sampah. Jawab 3 hal ini:</div>
+      <div style="display:flex;gap:10px;margin-top:6px;">
+        <div style="flex:1;background:rgba(255,255,255,.55);border-radius:12px;padding:10px 12px;font-size:14px;"><b>(a) Ide Pokok Masalah</b><br>Masalah apa yang terlihat?</div>
+        <div style="flex:1;background:rgba(255,255,255,.55);border-radius:12px;padding:10px 12px;font-size:14px;"><b>(b) Fakta atau Opini?</b><br>Benarkah sungai itu tercemar? Bagaimana tahu?</div>
+        <div style="flex:1;background:rgba(255,255,255,.55);border-radius:12px;padding:10px 12px;font-size:14px;"><b>(c) Pendapat, Kritik &amp; Solusi</b><br>Bagaimana menurutmu? Apa solusinya?</div>
+      </div>
+    </div>
+    <div class="card" style="flex:1;border:2px dashed rgba(255,255,255,.5);background:rgba(255,255,255,.45);">
+      <div class="ctag">Contoh jawaban lengkap</div>
+      <div style="font-size:13px;line-height:1.8;">
+        <b>(a)</b> "Ide pokok masalah: <b>Sungai tercemar sampah.</b>"<br>
+        <b>(b)</b> "Ini adalah <b>fakta</b> karena kita bisa melihat sampah di sungai secara langsung. Pencemaran sungai adalah sesuatu yang bisa dibuktikan, bukan pendapat."<br>
+        <b>(c)</b> "Menurut saya, membuang sampah ke sungai adalah perbuatan yang sangat merusak lingkungan. <b>Kritik:</b> Sungai tidak seharusnya dijadikan tempat sampah. <b>Solusi:</b> Kita harus menyediakan tempat sampah yang cukup dan memberi tahu masyarakat agar tidak membuang sampah ke sungai."
+      </div>
+    </div>
+    <div class="hlt"><div class="hl">Rumus HOTS Soal 10</div><b>(a)</b> Ide pokok → <b>(b)</b> Fakta/opini + alasan → <b>(c)</b> Pendapat + kritik + solusi</div>
   </div>
 </div>
 
@@ -242,8 +434,13 @@ function rebuild(){
   sl=Array.from(document.querySelectorAll('.slide'));N=sl.length;dw.innerHTML='';
   sl.forEach((s,i)=>{
     const d=document.createElement('div');d.className='dot'+(i===cur?' active':'');
+    d.title='Soal '+(i+1);
     d.onclick=(()=>{const idx=i;return()=>go(idx);})();dw.appendChild(d);
     const eb=s.querySelector('.emoji-bg');if(eb)spawnEmoji(eb,s.dataset.emoji||'✨🌟💫');
+    // add soal badge
+    const badge=document.createElement('div');
+    badge.className='soal-badge';badge.textContent=s.dataset.soal||'';
+    s.appendChild(badge);
   });
 }
 function animateIn(){
@@ -279,13 +476,15 @@ function go(n){
   if(n<0||n>=N)return;pause();
   sl[cur].classList.remove('active');dw.children[cur].classList.remove('active');
   cur=n;sl[cur].classList.add('active');dw.children[cur].classList.add('active');
-  document.getElementById('pb').disabled=cur===0;document.getElementById('nb').disabled=cur===N-1;load();
+  document.getElementById('pb').disabled=cur===0;document.getElementById('nb').disabled=cur===N-1;
+  window.scrollTo({top:0,behavior:'smooth'});load();
 }
 (function init(){
   const nav=document.getElementById('nav'),app=document.getElementById('app');
   const slides=[...document.querySelectorAll('.slide')];
-  for(let i=slides.length-1;i>0;i--){const j=~~(Math.random()*(i+1));[slides[i],slides[j]]=[slides[j],slides[i]];}
-  slides.forEach(s=>{s.classList.remove('active');app.insertBefore(s,nav);});
+  // NO shuffle — urut soal 1-10
+  slides.forEach(s=>s.classList.remove('active'));
+  slides.forEach(s=>app.insertBefore(s,nav));
   cur=0;rebuild();sl[0].classList.add('active');
   document.getElementById('pb').disabled=true;document.getElementById('nb').disabled=N<=1;load();
 })();
